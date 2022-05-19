@@ -1,0 +1,146 @@
+// menu bar
+@use "styling" as *;
+
+.menu-btn {
+  position: absolute;
+  z-index: 1;
+  right: 1rem;
+  top: 1rem;
+  height: 20px;
+  width: 28px;
+  cursor: pointer;
+  @include transition-ease;
+
+  //   create the burger menu lines
+  &_burger {
+    position: absolute;
+    width: 28px;
+    height: 3px;
+    background: set-Text-color($primary);
+    @include transition-ease;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: -8px;
+      width: 28px;
+      height: 3px;
+      background: set-Text-color($primary);
+      @include transition-ease;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 8px;
+      width: 20px;
+      height: 3px;
+      background: set-Text-color($primary);
+      @include transition-ease;
+    }
+
+    // when clicked change the form to x
+    &.open {
+      transform: rotate(180deg);
+      background: transparent;
+
+      &::before {
+        transform: rotate(45deg) translate(5px, 8px);
+      }
+
+      &::after {
+        width: 28px;
+        transform: rotate(-45deg) translate(3px, -7px);
+      }
+    }
+  }
+  // -responsive
+  @include media-md {
+    visibility: hidden;
+  }
+}
+
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  opacity: 0.98;
+  visibility: hidden;
+
+  @include media-md {
+    visibility: visible;
+  }
+  .menu-nav {
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    overflow: hidden;
+    background: $primary;
+    list-style-type: none;
+    padding-right: 1rem;
+    transform: translateY(-100%);
+    @include transition-ease;
+
+    //  li
+
+    &__item {
+      transform: translateX(100vw);
+      @include transition-ease;
+      transition-delay: calc(var(--order) * 150ms);
+
+      //   link
+      &.active > a {
+        color: $secondary;
+      }
+      // -responsive
+
+      @include media-md {
+        display: inline;
+        padding-right: 1.5rem;
+      }
+    }
+
+    // link a
+    &__link {
+      display: inline-block;
+      font-size: 2rem;
+      text-transform: uppercase;
+      padding: 2rem 0;
+      font-weight: 300;
+      @include transition-ease;
+
+      &:hover {
+        color: $secondary;
+      }
+
+      // -responsive
+      @include media-md {
+        font-size: 1.5rem;
+      }
+    }
+
+    // responsive
+    @include media-md {
+      display: block;
+      transform: translateY(0);
+      height: 100%;
+      background-color: transparent;
+      text-align: right;
+    }
+  }
+
+  &.open {
+    visibility: visible;
+
+    .menu-nav {
+      transform: translateY(0);
+
+      &__item {
+        transform: translateX(0);
+      }
+    }
+  }
+}

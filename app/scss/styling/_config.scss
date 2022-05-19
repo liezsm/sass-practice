@@ -1,0 +1,22 @@
+$primary: #272727;
+$secondary: #ff652f;
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+@function set-Text-color($color) {
+  @if (lightness($color) > 40%) {
+    @return #000;
+  } @else {
+    @return #fff;
+  }
+}
+
+%color {
+  color: set-Text-color($primary);
+}

@@ -1,0 +1,2 @@
+console.log("hello");const menuBtn=document.querySelector("[data-menu]"),hamburger=document.querySelector("[data-burger]"),nav=document.querySelector("[data-nav]");let showMenu=!1;function toggleMenu(){hamburger.classList.toggle("open"),hamburger.classList.contains("open")?nav.classList.add("open"):nav.classList.remove("open")}menuBtn.addEventListener("click",toggleMenu);
+//# sourceMappingURL=script.js.map
